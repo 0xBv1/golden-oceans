@@ -113,11 +113,11 @@ export class NavComponent implements OnInit {
   getDestination() {
     this._DataService.getDestination().subscribe({
       next: (res) => {
-        console.log(res.data.data);
+        
         this.allDestinations = res.data.data;
       },
       error: (err) => {
-        // console.log(err);
+        // 
       },
     });
   }
@@ -125,11 +125,11 @@ export class NavComponent implements OnInit {
   getCategories() {
     this._DataService.getCategories().subscribe({
       next: (res) => {
-        console.log(res.data.data);
+        
         this.allCategories = res.data.data;
       },
       error: (err) => {
-        // console.log(err);
+        // 
       },
     });
   }
@@ -137,7 +137,7 @@ export class NavComponent implements OnInit {
   getSettings(): void {
     this._DataService.getSetting().subscribe({
       next: (res) => {
-        console.log(res.data);
+        
 
         const contactLogo = res.data.find(
           (item: any) => item.option_key === 'logo'
@@ -154,10 +154,10 @@ export class NavComponent implements OnInit {
         );
         this.siteTitle = title?.option_value[0];
 
-        // console.log(this.logo);
+        // 
       },
       error: (err) => {
-        // console.log(err);
+        // 
       },
     });
   }
@@ -165,11 +165,11 @@ export class NavComponent implements OnInit {
   getEgyptCategory(): void {
     this._DataService.getTours({ destination_title: 'egypt' }).subscribe({
       next: (res) => {
-        console.log(res.data.categories);
+        
         this.egyptCategories = res.data.categories;
       },
       error: (err) => {
-        // console.log(err);
+        // 
       },
     });
   }

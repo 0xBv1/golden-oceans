@@ -71,7 +71,7 @@ export class TourComponent implements OnInit {
       // } else {
       //   this.getTourPage(this.currentPage);
       // }
-      console.log('params', param);
+      
 
       this.selectedDestination = param['location'];
       this.selectedTripType = param['type'];
@@ -83,14 +83,14 @@ export class TourComponent implements OnInit {
   getDestination() {
     this._DataService.getDestination().subscribe({
       next: (res) => (this.allDestinations = res.data.data),
-      // error: (err) => console.log(err),
+      // error: (err) => 
     });
   }
 
   getCategories() {
     this._DataService.getCategories().subscribe({
       next: (res) => (this.allCategories = res.data.data),
-      // error: (err) => console.log(err),
+      // error: (err) => 
     });
   }
 
@@ -98,9 +98,9 @@ export class TourComponent implements OnInit {
     this._DataService.getToursDuration().subscribe({
       next: (res) => {
         this.allDurations = res.data;
-        // console.log(this.allDurations);
+        // 
       },
-      // error: (err) => console.log(err),
+      // error: (err) => 
     });
   }
 
@@ -113,13 +113,13 @@ export class TourComponent implements OnInit {
     // if (params.location) query['destinations.id'] = params.location;
     // if (params.type) query['categories.id'] = params.type;
     // if (params.duration) query['duration.id'] = params.duration;
-    console.log(params, query);
+    
 
     this._DataService.getTours(query).subscribe({
       next: (res) => {
         // const searchTerm = params.tourName?.toLowerCase() || '';
         this.allTours = res.data.data;
-        console.log(this.allTours);
+        
         this.itemsPerPage = res.data.per_page;
         this.currentPage = res.data.current_page;
         this.totalItems = res.data.total;
@@ -131,7 +131,7 @@ export class TourComponent implements OnInit {
         }
 
         this.filteredTours = [...this.allTours];
-        console.log(this.filteredTours);
+        
       },
       error: (err) => console.error(err),
     });
@@ -168,7 +168,7 @@ export class TourComponent implements OnInit {
       page: this.currentPage,
     });
 
-    // console.log(
+    // 
     //   this.selectedDestination,
     //   this.selectedTripType,
     //   this.selectedDuration,
@@ -188,8 +188,8 @@ export class TourComponent implements OnInit {
         this.allTours = res.data.data;
         this.totalItems = res.data.total;
         this.currentPage = page;
-        // console.log(this.itemsPerPage, this.totalItems, this.currentPage);
-        // console.log(res.data);
+        // 
+        // 
 
         this.allTours.forEach((tour) => {
           tour.destinationsTitle = tour.destinations
@@ -204,7 +204,7 @@ export class TourComponent implements OnInit {
 
   onPageChange(page: number): void {
     this.currentPage = page;
-    // console.log(page);
+    // 
     this.filterTours();
   }
 
@@ -235,25 +235,25 @@ export class TourComponent implements OnInit {
     this.filteredTours = [...this.allTours].sort(
       (a, b) => b.display_order - a.display_order
     );
-    // console.log(this.filteredTours);
+    // 
   }
 
   sortByRecent() {
     this.filteredTours = [...this.allTours].sort((a, b) => b.id - a.id);
-    // console.log(this.filteredTours);
+    // 
   }
 
   sortByPriceAsc() {
     this.filteredTours = [...this.allTours].sort(
       (a, b) => a.start_from - b.start_from
     );
-    // console.log(this.filteredTours);
+    // 
   }
 
   sortByPriceDesc() {
     this.filteredTours = [...this.allTours].sort(
       (a, b) => b.start_from - a.start_from
     );
-    // console.log(this.filteredTours);
+    // 
   }
 }

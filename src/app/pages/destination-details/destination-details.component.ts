@@ -43,15 +43,15 @@ export class DestinationDetailsComponent implements OnInit {
     this._ActivatedRoute.paramMap.subscribe({
       next: (param) => {
         this.destinationSlug = param.get('slug');
-        // console.log('Destination Slug:', this.destinationSlug);
+        // 
 
         this._DataService.getDestinationBySlug(this.destinationSlug).subscribe({
           next: (response) => {
             this.destinationDetails = response.data;
-            // console.log(this.destinationSlug);
+            // 
             this.showTours(this.destinationSlug);
 
-            console.log('destination Details:', this.destinationDetails);
+            
           },
           error: (err) => {
             console.error('Error fetching destination details:', err);
@@ -66,7 +66,7 @@ export class DestinationDetailsComponent implements OnInit {
   getDestinations() {
     this._DataService.getDestination().subscribe({
       next: (res) => {
-        // console.log(res.data.data);
+        // 
         this.AllDestination = res.data.data;
       },
     });
@@ -77,7 +77,7 @@ export class DestinationDetailsComponent implements OnInit {
     this._DataService.getTours().subscribe({
       next: (response) => {
         this.tours = response.data.data;
-        console.log('Tours Data:', this.tours, this.tours.length);
+        
         for (let i = 0; i < this.tours.length; i++) {
           const tour = this.tours[i];
           const tourDestinationSlugs = (tour.destinations ?? []).map((x: any) =>
@@ -88,7 +88,7 @@ export class DestinationDetailsComponent implements OnInit {
           if (tourDestinationSlugs.includes(desSlug.toLowerCase())) {
             this.filteredTours.push(tour);
           }
-          console.log(tourDestinationSlugs, this.filteredTours, desSlug);
+          
         }
       },
       error: (err) => {

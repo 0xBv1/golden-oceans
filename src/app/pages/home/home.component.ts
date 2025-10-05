@@ -150,14 +150,14 @@ export class HomeComponent implements OnInit {
             }
           });
         }
-        console.log(this.alltours);
-        console.log(this.destinationPrices);
-        console.log(this.categoryPrices);
+        
+        
+        
         // this.getDestination();
         // this.getCategory();
       },
       error: (err) => {
-        console.log(err);
+        
       },
     });
   }
@@ -166,8 +166,8 @@ export class HomeComponent implements OnInit {
   //   this._DataService.getDestination().subscribe({
   //     next: (res) => {
   //       const pricesMap = this.destinationPrices; // مثل { Egypt: 80, Alexandria: 100, Luxor: 100 }
-  //       console.log(this.destinationPrices);
-  //       console.log(res, 'home page');
+  //       
+  //       
 
   //       this.allDestinations = res.data.data.map((dest: any) => {
   //         const destTitle = dest.title.trim().toLowerCase();
@@ -190,10 +190,10 @@ export class HomeComponent implements OnInit {
   //         return dest;
   //       });
 
-  //       console.log('all destinations with start price', this.allDestinations);
+  //       
   //     },
   //     error: (err) => {
-  //       console.log(err);
+  //       
   //     },
   //   });
   // }
@@ -210,7 +210,7 @@ export class HomeComponent implements OnInit {
         takeUntil(this.$destory), // close , clear suscripe memory on destroy
         tap((res) => {
           if (res) {
-            // console.log('home page -- ', res);
+            // 
             this.allDestinations = res.data.data;
           }
         })
@@ -221,10 +221,10 @@ export class HomeComponent implements OnInit {
   getCategory() {
     this._DataService.getCategories().subscribe({
       next: (res) => {
-        console.log(res.data.data);
+        
 
         const pricesMap = this.categoryPrices; // مثل { Multi Days Tours: 80, Egypt Classic Tours: 100, Nile Cruises: 150 , Adventure Tours: 80,Culture Tours: 80 }
-        console.log(pricesMap);
+        
 
         this.allCategories = res.data.data.map((cat: any) => {
           const categoryTitle = cat.title.trim().toLowerCase();
@@ -232,7 +232,7 @@ export class HomeComponent implements OnInit {
 
           for (const key in pricesMap) {
             const priceTitle = key.trim().toLowerCase();
-            // console.log(priceTitle, categoryTitle);
+            // 
 
             if (categoryTitle === priceTitle) {
               cat.start_price = pricesMap[key];
@@ -243,13 +243,13 @@ export class HomeComponent implements OnInit {
 
           if (!matched) {
             cat.start_price = pricesMap['Nile Cruises']; // fallback to Nile Cruises price
-            console.log('not matched');
+            
           }
 
           return cat;
         });
 
-        console.log('all categories with start price', this.allCategories);
+        
       },
     });
   }
@@ -261,15 +261,15 @@ export class HomeComponent implements OnInit {
         takeUntil(this.$destory), // close , clear suscripe memory on destroy
         tap((res) => {
           this.allDurations = res.data;
-          console.log(this.allDurations);
+          
         })
       )
       .subscribe({
         next: (res) => {
-          // console.log(res.data);
+          // 
         },
         error: (err) => {
-          // console.log(err);
+          // 
         },
       });
   }
@@ -279,10 +279,10 @@ export class HomeComponent implements OnInit {
     this._DataService.getReviews().subscribe({
       next: (res) => {
         this.allReviews = res.data.data;
-        console.log(this.allReviews);
+        
       },
       error: (err) => {
-        console.log(err);
+        
       },
     });
   }

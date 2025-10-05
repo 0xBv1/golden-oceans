@@ -29,7 +29,7 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
     const token = getToken();
     if (token) {
       headers['Authorization'] = `Bearer ${token}`;
-      console.log('✅ Token attached:', token);
+      
     } else {
       console.warn('⚠️ No token found in localStorage.');
     }

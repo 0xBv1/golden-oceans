@@ -48,7 +48,7 @@ export class SignupComponent {
   getSettings(): void {
     this._DataService.getSetting().subscribe({
       next: (res) => {
-        console.log(res.data);
+        
 
         const contactLogo = res.data.find(
           (item: any) => item.option_key === 'logo'
@@ -60,10 +60,10 @@ export class SignupComponent {
         );
         this.siteTitle = title?.option_value[0];
 
-        // console.log(this.logo);
+        // 
       },
       error: (err) => {
-        // console.log(err);
+        // 
       },
     });
   }
@@ -71,7 +71,7 @@ export class SignupComponent {
   getCountries() {
     this._DataService.getCountries().subscribe({
       next: (response) => {
-        console.log(response.data);
+        
         this.countryList = response.data;
       },
     });
@@ -79,13 +79,13 @@ export class SignupComponent {
 
   handleRegisterForm(): void {
     if (this.registerForm.valid) {
-      // console.log(this.registerForm.value);
+      // 
       this.isLoading = true;
       this._AuthService.setRegister(this.registerForm.value).subscribe({
         next: (response) => {
-          // console.log(response);
+          // 
           if (response.status == true) {
-            // console.log('true');
+            // 
             this.isLoading = false;
             this.toastr.success(response.message);
 
@@ -94,7 +94,7 @@ export class SignupComponent {
           }
         },
         error: (err) => {
-          // console.log(err);
+          // 
           this.isLoading = false;
           this.toastr.error(err.error.message);
         },

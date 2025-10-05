@@ -32,10 +32,10 @@ export class DestinationComponent implements OnInit {
       next: (res) => {
         this.allDestinations = res.data.data;
 
-        console.log('all destinations', res);
+        
       },
       error: (err) => {
-        console.log(err);
+        
       },
     });
   }

@@ -99,7 +99,7 @@ export class ProfileComponent implements OnInit {
 
     this._ProfileService.updateImageProfile(userImage).subscribe({
       next: (res) => {
-        console.log('Uploaded ✅', res);
+        
         this.toaster.success('Profile image updated');
       },
       error: (err) => {
@@ -111,18 +111,18 @@ export class ProfileComponent implements OnInit {
 
   // // start user profile image
   // onSelect(event: any) {
-  //   console.log(event);
+  //   
   //   this.files.set([...this.files(), ...event.addedFiles]);
-  //   console.log(this.files);
+  //   
 
   //   this.uploadImage(this.files);
   // }
   // onRemove(event: any) {
-  //   console.log(event);
+  //   
   //   const files = this.files();
   //   files.splice(files.indexOf(event), 1);
   //   this.files.set([...files]);
-  //   console.log(files);
+  //   
   //   this.uploadImage(files);
   // }
   // // end user profile image
@@ -130,10 +130,10 @@ export class ProfileComponent implements OnInit {
   // uploadImage(img: any): void {
   //   this._ProfileService.updateImageProfile(img).subscribe({
   //     next: (res) => {
-  //       console.log(res);
+  //       
   //     },
   //   });
-  //   console.log(img);
+  //   
   // }
 
   getListCart(): void {
@@ -142,7 +142,7 @@ export class ProfileComponent implements OnInit {
         this.tourCart = response.data;
         if (this.tourCart.length === 0) {
           this.haveData = false;
-          console.log(this.tourCart);
+          
         } else {
           this.tourCart = response.data.map((tour: any) => ({
             ...tour,
@@ -152,11 +152,11 @@ export class ProfileComponent implements OnInit {
               tour.infants * tour.tour.infant_price,
           }));
           this.haveData = true;
-          console.log(this.tourCart);
+          
         }
       },
       error: (err) => {
-        console.log(err);
+        
       },
     });
   }
@@ -164,7 +164,7 @@ export class ProfileComponent implements OnInit {
   showCountries(): void {
     this._BookingService.getCountries().subscribe({
       next: (response) => {
-        console.log(response.data);
+        
         this.countriesList = response.data;
       },
     });
@@ -173,19 +173,19 @@ export class ProfileComponent implements OnInit {
   submitProfileData(): void {
     if (this.updateProfile.valid) {
       const profileData = this.updateProfile.value;
-      console.log(profileData);
+      
       this._ProfileService.updateProfile(profileData).subscribe({
         next: (response) => {
-          console.log(response);
+          
           this.toaster.success(response.error.message);
         },
         error: (err) => {
-          console.log(err);
+          
           this.toaster.error(err.error.message);
         },
       });
     } else {
-      console.log('nooooo');
+      
     }
   }
 
@@ -193,7 +193,7 @@ export class ProfileComponent implements OnInit {
     this._ProfileService.getProfile().subscribe({
       next: (response) => {
         this.profilemeData = response.data;
-        console.log(this.profilemeData);
+        
         // this.updateProfile.patchValue({
         //   name: this.profilemeData.name,
         //   phone: this.profilemeData.phone,
@@ -202,8 +202,8 @@ export class ProfileComponent implements OnInit {
         // });
       },
       error: (err) => {
-        console.log(err);
-        // console.log(localStorage.getItem('accessToken'));
+        
+        // 
       },
     });
   }
@@ -211,15 +211,15 @@ export class ProfileComponent implements OnInit {
   logout(): void {
     this._ProfileService.logoutProfile().subscribe({
       next: (response) => {
-        // console.log(response);
+        // 
         localStorage.removeItem('accessToken');
         // navigate it to home
         this._Router.navigate(['']);
-        // console.log('ahmed');
+        // 
         this.toaster.success(response.message);
       },
       error: (err) => {
-        // console.log(err);
+        // 
         this.toaster.error(err.error.message);
       },
     });
@@ -250,13 +250,13 @@ export class ProfileComponent implements OnInit {
       next: (response) => {
         if (localStorage.getItem('accessToken')) {
           this.favList = response.data.data;
-          console.log(response.data.data);
+          
           if (this.favList.length === 0) {
             this.haveData = false;
-            console.log(this.favList.length);
+            
           } else {
             this.haveData = true;
-            console.log(response.data.data);
+            
             this.favList = response.data.data;
           }
         }
@@ -278,13 +278,13 @@ export class ProfileComponent implements OnInit {
   //       } else {
   //         this.favouriteIds.push(id);
   //       }
-  //       console.log(id);
-  //       console.log(this.myFavList);
+  //       
+  //       
   //       this.getFav();
   //       // this.toaster.success(response.message);
   //     },
   //     error: (err) => {
-  //       console.log(err);
+  //       
   //       this.toaster.error(err.error.message);
   //     },
   //   });

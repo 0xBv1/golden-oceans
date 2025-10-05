@@ -62,15 +62,15 @@ export class TourCartComponent implements OnInit {
             'favouriteIds',
             JSON.stringify(this.favouriteIds)
           );
-          // console.log(id);
-          // console.log(this.favs);
+          // 
+          // 
           // this.toaster.success(response.message);
         } else {
           this.toaster.error('You must have an account ');
         }
       },
       error: (err) => {
-        // console.log(err);
+        // 
         this.toaster.error(err.error.message);
         // this._Router.navigate(['/login']);
       },

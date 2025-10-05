@@ -39,7 +39,7 @@ export class BlogComponent {
         this.allBlogs = res?.data?.data ?? res ?? [];
         this.totalItems = this.allBlogs.length; // client-side pagination
       },
-      error: (err) => console.log(err),
+      error: (err) => 
     });
   }
 

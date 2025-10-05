@@ -122,7 +122,7 @@ export class TourDetailsComponent implements OnInit {
     this._ActivatedRoute.paramMap.subscribe({
       next: (param) => {
         this.tourDetailsSlug = param.get('slug') ?? '';
-        // console.log(this.tourDetailsSlug);
+        // 
         this.getTour(this.tourDetailsSlug);
       },
     });
@@ -134,11 +134,11 @@ export class TourDetailsComponent implements OnInit {
   getTour(slug: string) {
     this._DataService.getToursSlug(slug).subscribe({
       next: (response) => {
-        // console.log(response.data);
+        // 
         this.tourData = response.data;
         this.tourItenary = response.data?.days;
         this.tourGallery = response.data?.gallery;
-        console.log(this.tourData);
+        
 
         this.tourIncluded = this.tourData?.included
           ? this.tourData.included.split(',')
@@ -154,10 +154,10 @@ export class TourDetailsComponent implements OnInit {
           this.tourData.destinationsTitle = this.tourData.destinations
             .map((x: any) => x.title)
             .join(',');
-          // console.log(this.tourData.destinationsTitle);
+          // 
         }
 
-        // console.log(this.tourData?.destinationsTitle);
+        // 
 
         this.writeReview.patchValue({ tour_id: response.data.id });
         this.bookingFormData.patchValue({ tour_id: response.data.id });
@@ -174,7 +174,7 @@ export class TourDetailsComponent implements OnInit {
   getTourPricing(adultNum: number) {
     if (!this.tourData) {
       this.toaster.error('No data available.');
-      // console.log('No data available.');
+      // 
       return;
     }
 
@@ -182,7 +182,7 @@ export class TourDetailsComponent implements OnInit {
       this.tourData.pricing_groups &&
       this.tourData.pricing_groups.length > 0
     ) {
-      // console.log("Pricing Groups Exist:", this.tourData.pricing_groups);
+      // 
 
       // Find the correct pricing group based on adultNum
       const matchedGroup = this.tourData.pricing_groups.find(
@@ -191,14 +191,14 @@ export class TourDetailsComponent implements OnInit {
       );
 
       if (matchedGroup) {
-        // console.log("Matched Pricing Group:", matchedGroup);
+        // 
         this.adultPrice = matchedGroup.price;
         this.childPrice = matchedGroup.child_price;
         this.totalPrice = this.adultPrice + this.childPrice;
-        // console.log("Adult Price:", matchedGroup.price);
-        // console.log("Child Price:", matchedGroup.child_price);
+        // 
+        // 
       } else {
-        // console.log('No matching pricing group found.');
+        // 
         this.adultPrice = this.tourData.adult_price;
         this.childPrice = this.tourData.child_price;
         this.infantPrice = this.tourData.infant_price;
@@ -206,7 +206,7 @@ export class TourDetailsComponent implements OnInit {
       }
     } else {
       // If no pricing_groups exist, return default prices
-      // console.log('No Pricing Groups - Using Default Prices');
+      // 
       this.adultPrice = this.tourData.adult_price;
       this.childPrice = this.tourData.child_price;
       this.infantPrice = this.tourData.infant_price;
@@ -216,17 +216,17 @@ export class TourDetailsComponent implements OnInit {
 
   submitBookingForm(): void {
     if (this.bookingFormData.valid) {
-      // console.log(this.bookingFormData.value);
+      // 
       this._BookingService
         // ,localStorage.getItem('accessToken')
         .appendBookingData(this.bookingFormData.value)
         .subscribe({
           next: (response) => {
-            // console.log(response);
+            // 
             if (response.status == true) {
-              // console.log(response.status);
-              // console.log(this.bookingFormData.value);
-              // console.log(localStorage.getItem('accessToken'));
+              // 
+              // 
+              // 
 
               this.toaster.success(response.message);
               this._Router.navigate(['/cart']);
@@ -243,11 +243,11 @@ export class TourDetailsComponent implements OnInit {
 
   getWriteReview() {
     if (this.writeReview.valid) {
-      // console.log(this.writeReview.value);
+      // 
       this.isLoading = true;
       this._DataService.postReviews(this.writeReview.value).subscribe({
         next: (response) => {
-          // console.log(response);
+          // 
           if (response.status == true) {
             this.toaster.success(response.message);
             this.isLoading = false;
@@ -295,7 +295,7 @@ export class TourDetailsComponent implements OnInit {
   getSettings(): void {
     this._DataService.getSetting().subscribe({
       next: (res) => {
-        // console.log(res.data);
+        // 
 
         const contactPhone = res.data.find(
           (item: any) => item.option_key === 'CONTACT_PHONE_NUMBER'
@@ -308,7 +308,7 @@ export class TourDetailsComponent implements OnInit {
         this.userEmail = contactEmail?.option_value[0];
       },
       error: (err) => {
-        // console.log(err);
+        // 
       },
     });
   }
@@ -317,10 +317,10 @@ export class TourDetailsComponent implements OnInit {
     this._DataService.getFAQs().subscribe({
       next: (response) => {
         this.faqsList = response.data.data;
-        // console.log(response.data.data);
+        // 
       },
       error: (err) => {
-        // console.log(err);
+        // 
       },
     });
   }
@@ -329,7 +329,7 @@ export class TourDetailsComponent implements OnInit {
     if (this.tourData?.id) {
       this._DataService.getReviews(this.tourData.id).subscribe({
         next: (response) => {
-          // console.log(response.data.data);
+          // 
           this.tourReviews = response.data.data;
         },
         error: (err) => {

@@ -19,17 +19,17 @@ export class SocialComponent implements OnInit {
   getSettings(): void {
     this._DataService.getSetting().subscribe({
       next: (res) => {
-        // console.log(res.data);
+        // 
 
         // social links
         const contactLinks = res.data.find(
           (item: any) => item.option_key === 'social_links'
         );
         this.socialLinks = contactLinks?.option_value || [];
-        // console.log(this.socialLinks);
+        // 
       },
       error: (err) => {
-        // console.log(err);
+        // 
       },
     });
   }

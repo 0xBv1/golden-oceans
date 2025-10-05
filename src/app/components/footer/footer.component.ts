@@ -25,7 +25,7 @@ export class FooterComponent {
   getSettings(): void {
     this._DataService.getSetting().subscribe({
       next: (res) => {
-        // console.log(res.data);
+        // 
 
         const contactPhone = res.data.find(
           (item: any) => item.option_key === 'CONTACT_PHONE_NUMBER'
@@ -46,10 +46,10 @@ export class FooterComponent {
           (item: any) => item.option_key === 'company_location_url'
         );
         this.userLocation = contactMap?.option_value[0];
-        // console.log(this.userLocation);
+        // 
       },
       error: (err) => {
-        // console.log(err);
+        // 
       },
     });
   }

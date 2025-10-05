@@ -42,7 +42,7 @@ export class CheckoutComponent {
   ngOnInit(): void {
     this._BookingService.getCountries().subscribe({
       next: (response) => {
-        // console.log(response.data);
+        // 
         this.countries = response.data;
       },
     });
@@ -66,8 +66,8 @@ export class CheckoutComponent {
 
   getCheckoutData(): void {
     this.checkoutData = this.checkoutForm.value;
-    // console.log(this.checkoutData);
-    // console.log(this.checkoutForm.get('coupon_id')?.value);
+    // 
+    // 
 
     // if form is valid === true
     if (this.checkoutForm.valid) {
@@ -75,22 +75,22 @@ export class CheckoutComponent {
         .getCoupon(this.checkoutForm.get('coupon_id')?.value)
         .subscribe({
           next: (cResponse) => {
-            console.log(cResponse);
+            
             this.toaster.success(cResponse.message);
             // after coupon code is tammmam check other data and send it
             this._BookingService.sendCheckoutData(this.checkoutData).subscribe({
               next: (response) => {
-                console.log(response);
+                
                 this.toaster.success(response.message);
               },
               error: (err) => {
-                console.log(err);
+                
                 this.toaster.error(err.error.message);
               },
             });
           },
           error: (cError) => {
-            console.log(cError);
+            
             this.toaster.error(cError.error.message);
           },
         });
@@ -98,7 +98,7 @@ export class CheckoutComponent {
 
     // this._BookingService.sendCheckoutData(this.checkoutData).subscribe({
     //   next: (response) => {
-    //     // console.log(response);
+    //     // 
     //     this.toaster.success(response.message);
     //     // if form is valid === true
     //     if (response.status) {
@@ -106,16 +106,16 @@ export class CheckoutComponent {
     //         .getCoupon(this.checkoutForm.get('coupon_id')?.value)
     //         .subscribe({
     //           next: (cResponse) => {
-    //             // console.log(cResponse);
+    //             // 
     //           },
     //           error: (cError) => {
-    //             // console.log(cError);
+    //             // 
     //           },
     //         });
     //     }
     //   },
     //   error: (err) => {
-    //     console.log(err);
+    //     
     //     this.toaster.error(err.error.message);
     //   },
     // });
@@ -129,10 +129,10 @@ export class CheckoutComponent {
         this.tourCart = response.data;
         if (this.tourCart.length === 0) {
           this.haveData = false;
-          // console.log(this.tourCart);
+          // 
         } else {
           this.haveData = true;
-          // console.log(this.tourCart);
+          // 
 
           this.tourCart.forEach((item) => {
             let adultPrice = 0;
@@ -170,7 +170,7 @@ export class CheckoutComponent {
         }
       },
       error: (err) => {
-        // console.log(err);
+        // 
       },
     });
   }

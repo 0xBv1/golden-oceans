@@ -45,7 +45,7 @@ export class LoginComponent implements OnInit {
   getSettings(): void {
     this._DataService.getSetting().subscribe({
       next: (res) => {
-        console.log(res.data);
+        
 
         const contactLogo = res.data.find(
           (item: any) => item.option_key === 'logo'
@@ -57,10 +57,10 @@ export class LoginComponent implements OnInit {
         );
         this.siteTitle = title?.option_value[0];
 
-        // console.log(this.logo);
+        // 
       },
       error: (err) => {
-        // console.log(err);
+        // 
       },
     });
   }
@@ -68,7 +68,7 @@ export class LoginComponent implements OnInit {
   getCountries() {
     this._DataService.getCountries().subscribe({
       next: (response) => {
-        console.log(response.data);
+        
         this.countryList = response.data;
       },
     });
@@ -76,7 +76,7 @@ export class LoginComponent implements OnInit {
 
   handleLoginForm(): void {
     if (this.loginForm.valid) {
-      // console.log(this.loginForm.value);
+      // 
       this.isLoading = true;
       this._AuthService.setlogin(this.loginForm.value).subscribe({
         next: (response) => {
@@ -84,7 +84,7 @@ export class LoginComponent implements OnInit {
             this._AuthService.loginSuccess(response);
             this.toastr.success(response.message);
             this._Router.navigate(['']);
-            console.log(localStorage.getItem('accessToken'));
+            
           } else {
             this.toastr.error('Login failed');
           }
@@ -97,10 +97,10 @@ export class LoginComponent implements OnInit {
   }
 
   handleForgetPass(email: any): void {
-    console.log(email);
+    
     this._AuthService.setForgetPass(email).subscribe({
       next: (res) => {
-        console.log(res);
+        
         this.toastr.success(res.message);
       },
     });

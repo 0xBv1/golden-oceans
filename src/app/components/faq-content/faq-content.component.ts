@@ -20,7 +20,7 @@ export class FaqContentComponent implements OnInit {
   getFAQ() {
     this._DataService.getFAQs().subscribe({
       next: (res) => {
-        // console.log(res.data.data);
+        // 
         this.faqs = res.data.data;
       },
     });

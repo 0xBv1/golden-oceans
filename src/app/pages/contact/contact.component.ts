@@ -47,15 +47,15 @@ export class ContactComponent {
   });
 
   getContactData(): void {
-    // console.log(this.contactForm.value);
+    // 
 
     this._DataService.contactData(this.contactForm.value).subscribe({
       next: (response) => {
-        console.log(response);
+        
         this.toaster.success(response.message);
       },
       error: (err) => {
-        // console.log(err.error);
+        // 
         this.toaster.error(err.error.message);
       },
     });
@@ -65,7 +65,7 @@ export class ContactComponent {
   getCountries() {
     this._DataService.getCountries().subscribe({
       next: (response) => {
-        console.log(response.data);
+        
         this.countryList = response.data;
       },
     });
@@ -74,7 +74,7 @@ export class ContactComponent {
   getSettings(): void {
     this._DataService.getSetting().subscribe({
       next: (res) => {
-        // console.log(res.data);
+        // 
 
         const contactPhone = res.data.find(
           (item: any) => item.option_key === 'CONTACT_PHONE_NUMBER'
@@ -95,10 +95,10 @@ export class ContactComponent {
           (item: any) => item.option_key === 'company_location_url'
         );
         this.userLocation = contactMap?.option_value[0];
-        // console.log(this.userLocation);
+        // 
       },
       error: (err) => {
-        // console.log(err);
+        // 
       },
     });
   }

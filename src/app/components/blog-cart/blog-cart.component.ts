@@ -23,10 +23,10 @@ export class BlogCartComponent {
           const data = res?.data?.data ?? res ?? [];
           this.blogs = data;
           this.blogsLoaded.emit(data); // Emit to parent
-          console.log(res.data.data);
+          
         },
         error: (err) => {
-          console.log(err);
+          
         },
       });
     }

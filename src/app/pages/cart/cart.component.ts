@@ -32,10 +32,10 @@ export class CartComponent implements OnInit {
         this.tourCart = response.data;
         if (this.tourCart.length === 0) {
           this.haveData = false;
-          console.log(this.tourCart);
+          
         } else {
           this.haveData = true;
-          console.log(this.tourCart);
+          
 
           this.tourCart.forEach((item) => {
             let adultPrice = 0;
@@ -73,7 +73,7 @@ export class CartComponent implements OnInit {
         }
       },
       error: (err) => {
-        // console.log(err);
+        // 
       },
     });
   }
@@ -81,15 +81,15 @@ export class CartComponent implements OnInit {
   deleteCart(tourId: any): void {
     this._BookingService.deleteTourCart(tourId).subscribe({
       next: (response) => {
-        // console.log(response.data);
+        // 
         this.toaster.success(response.message);
 
         this.getListCart();
 
-        // console.log(this.tourCart);
+        // 
       },
       error: (err) => {
-        // console.log(err);
+        // 
         this.toaster.error(err.error.message);
       },
     });
@@ -98,15 +98,15 @@ export class CartComponent implements OnInit {
   clearCart(): void {
     this._BookingService.clearTourCart().subscribe({
       next: (response) => {
-        // console.log(response.data);
+        // 
         this.toaster.success(response.message);
 
         this.getListCart();
 
-        // console.log(this.tourCart);
+        // 
       },
       error: (err) => {
-        // console.log(err);
+        // 
         this.toaster.error(err.error.message);
       },
     });

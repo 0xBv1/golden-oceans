@@ -45,14 +45,14 @@ export class BlogDetailsComponent implements OnInit {
   ngOnInit(): void {
     this._ActivatedRoute.paramMap.subscribe({
       next: (param) => {
-        // console.log(param);
+        // 
         this.blogParam = param.get('slug');
-        // console.log('blog param:', this.blogParam);
+        // 
 
         if (!isNaN(Number(this.blogParam))) {
           this._DataService.getCategoriesBlog(this.blogParam).subscribe({
             next: (response) => {
-              // console.log(response.data);
+              // 
               this.blogListById = response.data;
               this.isListId = true;
               response.data.created_at = this.formatDate(
@@ -63,7 +63,7 @@ export class BlogDetailsComponent implements OnInit {
         } else {
           this._DataService.getBlogs(this.blogParam).subscribe({
             next: (response) => {
-              // console.log(response.data);
+              // 
               this.blogDetails = response.data;
               this.isListId = false;
               response.data.created_at = this.formatDate(
@@ -96,11 +96,11 @@ export class BlogDetailsComponent implements OnInit {
 
   getWriteReview() {
     if (this.writeReview.valid) {
-      console.log(this.writeReview.value);
+      
       this.isLoading = true;
       this._DataService.postReviews(this.writeReview.value).subscribe({
         next: (response) => {
-          console.log(response);
+          
           if (response.status == true) {
             this.toaster.success(response.message);
             this.isLoading = false;
@@ -123,11 +123,11 @@ export class BlogDetailsComponent implements OnInit {
   showBlogs() {
     this._DataService.getBlogs().subscribe({
       next: (res) => {
-        // console.log(res.data.data);
+        // 
         this.blogs = res.data.data;
       },
       error: (err) => {
-        // console.log(err);
+        // 
       },
     });
   }
@@ -135,11 +135,11 @@ export class BlogDetailsComponent implements OnInit {
   showCategoriesBlog() {
     this._DataService.getCategoriesBlog().subscribe({
       next: (res) => {
-        // console.log(res.data.data);
+        // 
         this.blogCategories = res.data.data;
       },
       error: (err) => {
-        // console.log(err);
+        // 
       },
     });
   }
